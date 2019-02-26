@@ -4,7 +4,9 @@
 
 Your goal is to recreate a very simple Airbnb clone. You can find an example here: https://mern-airbnb.herokuapp.com
 
-To reproduce this lab, you have to use the MERN boilerplate (and not this repository that is the solution).
+To reproduce this lab, you have to use the MERN boilerplate. This repository only contains instructions and the solution.
+
+![image](https://user-images.githubusercontent.com/5306791/53396450-bc6a1780-39a4-11e9-9266-6302e0ea6495.png)
 
 
 ## Lesson | How to add a Map with Mapbox?
@@ -80,8 +82,62 @@ export default MapboxExample
 
 First, create a new project by using the MERN boilerplate: https://github.com/mc100s/mern-boilerplate
 
+If you want to have the same design, you can use Bootstrap with Reactstrap:
+```sh
+cd client
+npm i bootstrap reactstrap
+```
+
+```scss
+// client/src/styles/index.scss
+$primary: #df4545; // Red
+@import 'bootstrap/scss/bootstrap';
+```
+
+
 ### Create Home feature
 
-The task is the following one: "The user should be able to add a Home".
+![image](https://user-images.githubusercontent.com/5306791/53398328-a448c700-39a9-11e9-887d-6a17a9597548.png)
 
-WIP
+
+For this task (that comes from Trello), you will have to:
+- Create a `Home` model (code below).
+- Create a route `POST /api/homes` to add a home. You can for example send `title`, `description`, `pricePerNight`, `lng` and `lat`.
+- Test it with Postman and make sure a document is created.
+- Create a method `addHome` in `client/src/api.js`.
+- Create a component `client/src/components/pages/AddHome.js` to let the user adding a home. It's okay at this stage to ask the user for the latitude and longitude of a place.
+
+
+```js
+// server/models/Home.js
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const homeSchema = new Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  pricePerNight: { type: Number, required: true },
+  location: {
+    type: { type: String, required: true },
+    coordinates: { type: [Number], required: true }
+  },
+  _owner: { type: Schema.Types.ObjectId, ref: 'User' }
+}, {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
+    }
+  });
+
+const Home = mongoose.model('Home', homeSchema);
+module.exports = Home;
+```
+
+### Read Home feature
+
+![image](https://user-images.githubusercontent.com/5306791/53398546-2df89480-39aa-11e9-924f-04b8a3fe52e2.png)
+
+
+### Create Home feature with a map 
+
+![image](https://user-images.githubusercontent.com/5306791/53398643-65674100-39aa-11e9-8b95-d6b9aacbf722.png)
