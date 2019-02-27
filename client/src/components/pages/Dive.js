@@ -3,21 +3,21 @@ import {
   Container,
 } from 'reactstrap'
 
-class Home extends Component {
+class Dive extends Component {
   // constructor(props) {
   //   super(props)
   //   this.state = {
   //   }
   // }
-  render() {                
+  render() {
     return (
-      <Container className="Home">
-        <h2>Home</h2>
-        <p>This is a sample project with the MERN stack</p>
+      <Container className="Dive">
+        <h2>Dive</h2>
+        <p>Journal about your amazing diving experiences!</p>
         <button className="btn btn-primary">Hello</button>
       </Container>
     );
   }
 }
 
-export default Home;
+export default Dive;

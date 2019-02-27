@@ -7082,3 +7082,7 @@ body {
 .Secret .result {
   font-size: 1.2em;
   color: #df4545; }
+
+#map {
+  width: 300px;
+  height: 300px; }

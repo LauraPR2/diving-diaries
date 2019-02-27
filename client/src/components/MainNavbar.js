@@ -33,14 +33,13 @@ export default class MainNavbar extends Component {
     return (
       <Navbar color="primary" dark expand="md" className="MainNavbar">
         <NavbarBrand to="/" tag={Link}>
-          <img src={logo} className="logo" alt="logo" />
-          MERN Airbnb
+
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink tag={NLink} to="/homes">Homes</NavLink>
+              <NavLink tag={NLink} to="/dives">Dives</NavLink>
             </NavItem>
             {!api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/signup">Signup</NavLink>
@@ -49,10 +48,10 @@ export default class MainNavbar extends Component {
               <NavLink tag={NLink} to="/login">Login</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
-              <NavLink tag={NLink} to="/add-home">Add your home</NavLink>
+              <NavLink tag={NLink} to="/add-dive">Add your dive</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
-              <NavLink tag={Link} to="/"  onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink>
+              <NavLink tag={Link} to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink>
             </NavItem>}
           </Nav>
         </Collapse>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import MainNavbar from './MainNavbar';
-import Home from './pages/Home';
-import Homes from './pages/Homes';
-import AddHome from './pages/AddHome';
+import Dive from './pages/Dive';
+import Dives from './pages/Dives';
+import AddDive from './pages/AddDive';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -27,9 +27,9 @@ class App extends Component {
       <div className="App">
         <MainNavbar />
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/homes" component={Homes} />
-          <Route path="/add-home" component={AddHome} />
+          <Route exact path="/" exact component={Dive} />
+          <Route path="/dives" component={Dives} />
+          <Route path="/add-dive" component={AddDive} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />
