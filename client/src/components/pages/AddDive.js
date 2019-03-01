@@ -28,13 +28,16 @@ export default class AddDive extends Component {
   handleClick(e) {
     e.preventDefault()
     console.log(this.state.title, this.state.description)
-    let data = {
-      title: this.state.title,
-      visibility: this.state.visibility,
-      depth: this.state.depth,
-      description: this.state.description,
-    }
-    api.addDive(data)
+
+    const formData = new FormData();
+    formData.append("photo", this.state.chosenFile);
+    formData.append("title", this.state.title);
+    formData.append("visibility", this.state.visibility);
+    formData.append("location", this.state.latLog);
+    formData.append("depth", this.state.depth);
+    formData.append("description", this.state.description);
+
+    api.addDive(formData)
       .then(result => {
         console.log('SUCCESS!')
         this.setState({
@@ -62,13 +65,22 @@ export default class AddDive extends Component {
     console.log(this.state)
   }
 
+  handleFileUpload = e => {
+    this.setState({
+      chosenFile: e.target.files[0]
+    })
+  }
+
   render() {
     return (
       <div className="AddDive">
         <h2>Add dive</h2>
         <form>
           Date: <input type="date" value={this.state.date} name="date" onChange={this.handleInputChange} /> <br />
-          Title: <input type="text" value={this.state.name} name="title" onChange={this.handleInputChange} /> <br />
+          Title: <input type="text" value={this.state.title} name="title" onChange={this.handleInputChange} /> <br />
+          <input type="file"
+            onChange={(e) => this.handleFileUpload(e)}
+          />
           Apnea or Scuba? <select value={this.state.diveType} name="diveType" onChange={this.handleInputChange}>
             <option value="Scuba">Scuba</option>
             <option value="Apnea">Apnea</option>
@@ -76,7 +88,10 @@ export default class AddDive extends Component {
           Visibility: <input type="number" value={this.state.visibility} name="visibility" onChange={this.handleInputChange} /> <br />
           Depth: <input type="number" value={this.state.depth} name="depth" onChange={this.handleInputChange} /> <br />
           Description: <textarea value={this.state.description} name="description" cols="30" rows="10" onChange={this.handleInputChange} ></textarea> <br />
-          <Map onClick={this.foundLocation} accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
+          <Map
+            onClick={this.foundLocation}
+            allowMovement={true}
+            accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
 
 
           <button onClick={(e) => this.handleClick(e)}>Create dive</button>

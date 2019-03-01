@@ -31,7 +31,7 @@ router.post("/signup", (req, res, next) => {
       req.logIn(userSaved, () => {
         // hide "encryptedPassword" before sending the JSON (it's a security risk)
         userSaved.password = undefined;
-        res.json( userSaved );
+        res.json(userSaved);
       });
     })
     .catch(err => next(err))
@@ -99,4 +99,8 @@ router.get("/logout", (req, res) => {
   res.json({ message: 'You are out!' })
 })
 
+
+router.get("/profile", (req, res) => {
+  res.json(req.user)
+})
 module.exports = router
