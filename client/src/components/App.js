@@ -4,6 +4,7 @@ import MainNavbar from './MainNavbar';
 import Dive from './pages/Dive';
 import Dives from './pages/Dives';
 import AddDive from './pages/AddDive';
+import DiveDetail from './pages/DiveDetail';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -31,6 +32,7 @@ class App extends Component {
           <Route exact path="/" exact component={Dive} />
           <Route path="/dives" component={Dives} />
           <Route path="/add-dive" component={AddDive} />
+          <Route path="/dive/:id" component={DiveDetail} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />

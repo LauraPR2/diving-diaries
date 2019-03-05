@@ -9,6 +9,7 @@ const diveSchema = new Schema({
   visibility: { type: Number },
   depth: { type: Number, required: true },
   location: { type: [Number], required: true },
+  rating: { type: Number, required: true },
   mainPicture: { type: String, required: false },
   _owner: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {

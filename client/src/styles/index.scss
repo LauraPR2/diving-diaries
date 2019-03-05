@@ -2,7 +2,7 @@
 
 // --------------------
 // Definition of variables
-$primary: #df4545;
+$primary: #5776e9;
 $marginBottomNavbar: 20px;
 $navbarHeight: 60px;
 
@@ -102,10 +102,10 @@ body {
       }
     }
 
-    .map {
-      height: 100%;
+    //.map {
+      //height: 100%;
       // height: calc(100vh - #{$navbarHeight});
-    }
+    //}
   }
 }
 
@@ -131,3 +131,36 @@ body {
   border-radius: 3px;
   display: none;
 }
+
+//Colors 
+
+.lightblue {
+  background-color: #e2eff2;
+}
+
+//Fonts
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.shadow {
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
+ }
+
+ form {
+   padding: 20px;
+   border-radius: 20px;
+ }
+
+ .diveCard {
+   margin: 50px;
+   border-radius: 20px;
+ }
+
+ .sMap {
+   width: 70px !important;
+   height: 70px !important;
+ }

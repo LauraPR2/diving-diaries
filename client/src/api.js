@@ -70,6 +70,13 @@ export default {
       .catch(errHandler)
   },
 
+  getDive(id) {
+    return service
+      .get('/dive/' + id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   addDive(body) {
     return service
       .post('/dives', body)
@@ -83,6 +90,12 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
 
+  },
+  editProfile(body) {
+    return service
+      .post('/edit-profile', body)
+      .then(res => res.data)
+      .catch(errHandler)
   },
 
   getSecret() {

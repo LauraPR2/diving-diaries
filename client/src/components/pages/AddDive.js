@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import api from '../../api';
 import Map from './Map';
+import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { type } from 'os';
+import Rating from './Rating'
 
 
 export default class AddDive extends Component {
@@ -11,6 +14,7 @@ export default class AddDive extends Component {
       visibility: 0,
       depth: 0,
       description: "",
+      rating: 0,
       latLog: [],
       message: null
     }
@@ -35,6 +39,7 @@ export default class AddDive extends Component {
     formData.append("visibility", this.state.visibility);
     formData.append("location", this.state.latLog);
     formData.append("depth", this.state.depth);
+    formData.append("rating", this.state.rating)
     formData.append("description", this.state.description);
 
     api.addDive(formData)
@@ -46,6 +51,7 @@ export default class AddDive extends Component {
           date: "",
           visibility: "",
           depth: "",
+          rating: "",
           description: "",
           message: `Your dive '${this.state.title}' has been created`
         })
@@ -71,31 +77,78 @@ export default class AddDive extends Component {
     })
   }
 
+  updateRating = number => {
+    this.setState({
+      rating: number
+    })
+  }
+
   render() {
     return (
-      <div className="AddDive">
-        <h2>Add dive</h2>
-        <form>
-          Date: <input type="date" value={this.state.date} name="date" onChange={this.handleInputChange} /> <br />
-          Title: <input type="text" value={this.state.title} name="title" onChange={this.handleInputChange} /> <br />
-          <input type="file"
-            onChange={(e) => this.handleFileUpload(e)}
-          />
-          Apnea or Scuba? <select value={this.state.diveType} name="diveType" onChange={this.handleInputChange}>
-            <option value="Scuba">Scuba</option>
-            <option value="Apnea">Apnea</option>
-          </select> <br />
-          Visibility: <input type="number" value={this.state.visibility} name="visibility" onChange={this.handleInputChange} /> <br />
-          Depth: <input type="number" value={this.state.depth} name="depth" onChange={this.handleInputChange} /> <br />
-          Description: <textarea value={this.state.description} name="description" cols="30" rows="10" onChange={this.handleInputChange} ></textarea> <br />
-          <Map
-            onClick={this.foundLocation}
-            allowMovement={true}
-            accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
+      <div className="container">
+        <Form className='shadow'>
+          <h2>Add dive</h2>
+          <Row form>
+            <Col md={4}>
+              <FormGroup>
+                <Label for="diveTypeSelect">Apnea or Scuba? </Label>
+                <Input type="select" id="diveTypeSelect" value={this.state.diveType} name="diveType" onChange={this.handleInputChange}>
+                  <option value="Scuba">Scuba</option>
+                  <option value="Apnea">Apnea</option>
+                </Input>
+              </FormGroup>
+              <FormGroup>
+                <Label for="exampleDate">Date: </Label>
+                <Input id="exampleDate" type="date" value={this.state.date} name="date" onChange={this.handleInputChange} />
 
+              </FormGroup>
+              <FormGroup>
+                <Label>Visibility: </Label>
+                <Input type="number" value={this.state.visibility} name="visibility" onChange={this.handleInputChange} />
+              </FormGroup>
+              <FormGroup>
+                <Label>Depth: </Label>
+                <Input type="number" value={this.state.depth} name="depth" onChange={this.handleInputChange} />
+              </FormGroup>
+              <FormGroup>
+                <Label>Rating</Label>
+                <Rating onUpdated={this.updateRating}>
+                  {this.state.rating}
+                </Rating>
+              </FormGroup>
 
-          <button onClick={(e) => this.handleClick(e)}>Create dive</button>
-        </form>
+            </Col>
+            <Col md={4}>
+              <FormGroup>
+                <Map
+                  onClick={this.foundLocation}
+                  allowMovement={true}
+                  accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <FormGroup>
+            <Label for="title">Title: </Label>
+            <Input id="title" type="text" value={this.state.title} name="title" onChange={this.handleInputChange} />
+          </FormGroup>
+          <FormGroup>
+            <Label>Description: </Label><br />
+            <Input type="textarea" value={this.state.description} name="description" cols="30" rows="10" onChange={this.handleInputChange} />
+          </FormGroup>
+          <FormGroup>
+            <Label for="imageFile" sm={2}>File</Label>
+            <Input id="imageFile" type="file" name="file"
+              onChange={(e) => this.handleFileUpload(e)}
+            />
+            <FormText color="muted">
+              This is some placeholder block-level help text for the above input.
+              It's a bit lighter and easily wraps to a new line.
+                </FormText>
+          </FormGroup>
+          <FormGroup>
+            <Button onClick={(e) => this.handleClick(e)}>Create dive</Button>
+          </FormGroup>
+        </Form>
         {this.state.message && <div className="info">
           {this.state.message}
         </div>}

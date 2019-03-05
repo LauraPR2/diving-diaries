@@ -13,18 +13,23 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 });
 
+
+
 // Route to add a dive
 router.post('/', uploadCloud.single('photo'), (req, res, next) => {
   console.log(req.file)
   console.log(req.body)
-  const secureUrl = req.file.secure_url;
-  let { title, visibility, depth, description, location } = req.body
+  var mainPicture = ""
+  if (req.file) {
+    const secureUrl = req.file.secure_url;
+    mainPicture = secureUrl
+  }
+  let { title, rating, visibility, depth, description, location } = req.body
 
   location = location.split(",")
 
   // console.log(secureUrl, location)
 
-  var mainPicture = secureUrl
 
   Dive.create({
     title,
@@ -32,6 +37,7 @@ router.post('/', uploadCloud.single('photo'), (req, res, next) => {
     depth,
     description,
     location,
+    rating,
     mainPicture
   })
     .then(dive => {
@@ -39,6 +45,14 @@ router.post('/', uploadCloud.single('photo'), (req, res, next) => {
         success: true,
         dive
       });
+    })
+    .catch(err => next(err))
+});
+
+router.get('/dive/:id', (req, res, next) => {
+  Dive.findElement()
+    .then(dives => {
+      res.json(dives);
     })
     .catch(err => next(err))
 });

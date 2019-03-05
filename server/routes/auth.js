@@ -3,6 +3,7 @@ const passport = require('passport')
 const router = express.Router()
 const User = require("../models/User")
 
+
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
@@ -103,4 +104,14 @@ router.get("/logout", (req, res) => {
 router.get("/profile", (req, res) => {
   res.json(req.user)
 })
+
+router.post("/edit-profile", (req, res) => {
+  const updatedUser = req.body
+  User.findByIdAndUpdate(req.user._id, updatedUser)
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => next(err))
+})
+
 module.exports = router

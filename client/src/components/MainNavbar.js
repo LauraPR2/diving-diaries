@@ -48,6 +48,9 @@ export default class MainNavbar extends Component {
               <NavLink tag={NLink} to="/login">Login</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
+              <NavLink tag={NLink} to="/profile">My Profile</NavLink>
+            </NavItem>}
+            {api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/add-dive">Add your dive</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
