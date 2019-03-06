@@ -9,6 +9,7 @@ import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
+import FavouriteDives from './pages/FavouriteDives'
 import api from '../api';
 
 class App extends Component {
@@ -30,7 +31,8 @@ class App extends Component {
         <MainNavbar />
         <Switch>
           <Route exact path="/" exact component={Dive} />
-          <Route path="/dives" component={Dives} />
+          <Route path="/dives/:page" component={Dives} />
+          <Route path="/favouriteDives" component={FavouriteDives} />
           <Route path="/add-dive" component={AddDive} />
           <Route path="/dive/:id" component={DiveDetail} />
           <Route path="/signup" component={Signup} />

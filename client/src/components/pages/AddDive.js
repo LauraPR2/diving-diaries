@@ -16,7 +16,9 @@ export default class AddDive extends Component {
       description: "",
       rating: 0,
       latLog: [],
-      message: null
+      message: null,
+      diveType: "",
+      chosenFiles: []
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -34,13 +36,17 @@ export default class AddDive extends Component {
     console.log(this.state.title, this.state.description)
 
     const formData = new FormData();
-    formData.append("photo", this.state.chosenFile);
+    for (var i = 0; i < this.state.chosenFiles.length; i++) {
+      formData.append("photo", this.state.chosenFiles[i]);
+    }
     formData.append("title", this.state.title);
     formData.append("visibility", this.state.visibility);
     formData.append("location", this.state.latLog);
     formData.append("depth", this.state.depth);
     formData.append("rating", this.state.rating)
     formData.append("description", this.state.description);
+    formData.append("date", this.state.date);
+    formData.append("diveType", this.state.diveType);
 
     api.addDive(formData)
       .then(result => {
@@ -72,8 +78,9 @@ export default class AddDive extends Component {
   }
 
   handleFileUpload = e => {
+    this.state.chosenFiles.push(e.target.files[0])
     this.setState({
-      chosenFile: e.target.files[0]
+      chosenFiles: this.state.chosenFiles
     })
   }
 
@@ -135,6 +142,18 @@ export default class AddDive extends Component {
             <Label>Description: </Label><br />
             <Input type="textarea" value={this.state.description} name="description" cols="30" rows="10" onChange={this.handleInputChange} />
           </FormGroup>
+
+          <FormGroup>
+            <Label for="imageFile" sm={2}>File</Label>
+            <Input id="imageFile" type="file" name="file"
+              onChange={(e) => this.handleFileUpload(e)}
+            />
+            <FormText color="muted">
+              This is some placeholder block-level help text for the above input.
+              It's a bit lighter and easily wraps to a new line.
+                </FormText>
+          </FormGroup>
+
           <FormGroup>
             <Label for="imageFile" sm={2}>File</Label>
             <Input id="imageFile" type="file" name="file"

@@ -72,7 +72,7 @@ export default {
 
   getDive(id) {
     return service
-      .get('/dive/' + id)
+      .get('/dives/dive/' + id)
       .then(res => res.data)
       .catch(errHandler)
   },
@@ -91,9 +91,35 @@ export default {
       .catch(errHandler)
 
   },
+
   editProfile(body) {
     return service
       .post('/edit-profile', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  editDive(id, body) {
+    return service
+      .post('/dives/edit-dive/' + id, body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteDive(id) {
+    return service
+      .delete('/dives/delete/' + id)
+      .catch(errHandler)
+  },
+  favouriteDive(id) {
+    return service
+      .post('/dives/favourite/' + id)
+      .catch(errHandler)
+  },
+
+  getDivesbyFavourite() {
+    return service
+      .get('/dives/favouriteDives')
       .then(res => res.data)
       .catch(errHandler)
   },

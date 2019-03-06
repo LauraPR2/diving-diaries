@@ -39,8 +39,11 @@ export default class MainNavbar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink tag={NLink} to="/dives">Dives</NavLink>
+              <NavLink tag={NLink} to="/dives/0">Dives</NavLink>
             </NavItem>
+            {api.isLoggedIn() && <NavItem>
+              <NavLink tag={NLink} to="/favouriteDives">Favourites</NavLink>
+            </NavItem>}
             {!api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/signup">Signup</NavLink>
             </NavItem>}
@@ -51,7 +54,7 @@ export default class MainNavbar extends Component {
               <NavLink tag={NLink} to="/profile">My Profile</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
-              <NavLink tag={NLink} to="/add-dive">Add your dive</NavLink>
+              <NavLink tag={NLink} to="/add-dive">New dive</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
               <NavLink tag={Link} to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink>
