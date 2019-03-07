@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'mapbox-gl/dist/mapbox-gl.css' // Import of Mapbox CSS
-import './styles/index.css';
+import './styles/index.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,16 +1,17 @@
 
 
+
 // --------------------
 // Definition of variables
 $primary: #cdfdfa;
-$marginBottomNavbar: 20px;
+// $marginBottomNavbar: 20px;
 $navbarHeight: 60px;
 
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
 // 2) Import bootstrap with the following line
-@import 'bootstrap/scss/bootstrap';
+//@import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
 
@@ -21,6 +22,7 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
 
 .info {
   margin: 20px;
@@ -34,6 +36,7 @@ body {
 .info.info-danger {
   background-color: #e73f3f;
 }
+
 
 // --------------------
 // Style for App component
@@ -65,8 +68,8 @@ body {
 
 .MainNavbar {
   min-height: $navbarHeight;
-  margin-bottom: $marginBottomNavbar;
-  background-color: #cdfdfa;
+  margin-bottom: 0;
+  background-color: #cdfdfa55 !important;
   .logo {
     height: 40px;
     padding-bottom: 4px;
@@ -76,39 +79,40 @@ body {
   }
 }
 
+
 // --------------------
 // Style for Home component
-.Home {
-  p {
-    font-size: 1.2em;
-  }
-}
+// .Home {
+//   p {
+//     font-size: 1.2em;
+//   }
+// }
 
-.Homes {
-  margin-top: -$marginBottomNavbar;
+// .Homes {
+//   margin-top: -$marginBottomNavbar;
 
-  .row {
-    height: calc(100vh - #{$navbarHeight});
+//   .row {
+//     height: calc(100vh - #{$navbarHeight});
     
-    .col-text {
-      padding: 20px;
-      overflow-y: scroll;
+//     .col-text {
+//       padding: 20px;
+//       overflow-y: scroll;
 
-      h2 {
-        text-align: center;
-      }
+//       h2 {
+//         text-align: center;
+//       }
 
-      h4 {
-        margin-top: 40px;
-      }
-    }
+//       h4 {
+//         margin-top: 40px;
+//       }
+//     }
 
     //.map {
       //height: 100%;
       // height: calc(100vh - #{$navbarHeight});
     //}
-  }
-}
+  //}
+//}
 
 // --------------------
 // Style for Secret component
@@ -138,11 +142,30 @@ body {
 .lightblue {
   background-color: #e2eff2;
 }
-
+.red {
+  color: #EF3F52;
+}
+.lightgreen {
+  color: #51E2EE;
+  
+}
+.midgreen {
+  color: #23B0B1;
+}
 //Fonts
 
 * {
   font-family: 'Quicksand', sans-serif;
+}
+h2 {
+  font-weight: bolder;
+}
+h3 {
+  color: gray;
+}
+
+.dark-grey {
+  color: #545353;
 }
 
 //displays
@@ -163,11 +186,26 @@ body {
  }
 
  .p20{
-   padding: 20px;
+   padding: 50px;
  }
 
+//  .row {
+//   border: 1px solid purple;
+//  }
+
+//  .col {
+//    border: 1px solid orange;
+//  }
+//  div {
+//   border: 1px solid purple;
+//  }
 
  // Login page
+
+ .tMap {
+   justify-content: flex-end;
+   padding: 0;
+ }
 
  .login {
    margin: 100px auto;
@@ -183,6 +221,21 @@ body {
 
  }
 
+ .tInfo >span {
+   font-size: 18px;
+   margin-bottom: 10px;
+   color: gray;
+ }
+
+
+ .tInfo:nth-child(1) {
+  margin-top: 30px;
+}
+
+ .ticons {
+   justify-content: flex-end;
+ }
+
 
  form {
    padding: 20px;
@@ -190,11 +243,85 @@ body {
  }
 
  .diveCard {
-   margin: 50px;
+   margin:0 auto 30px auto;
+   padding: 20px;
    border-radius: 20px;
+   background-color: white; 
+ }
+ .tInfo {
+   align-content: space-between;
  }
 
- .sMap {
-   width: 70px !important;
-   height: 70px !important;
+
+ .text-card > span {
+   font-size: 20px !important;
  }
+
+ .topFilter {
+   margin: 0 auto;
+ }
+
+ .aligning {
+  //  justify-content: flex-start;
+   align-items: center;
+   color: white;
+   font-weight: bolder;
+ }
+ .aligning > span {
+   margin-left: 0;
+  margin-right: 10px;
+  text-align: right;
+}
+
+ .dives {
+   padding:0;
+   margin: 0 auto !important;
+   margin-bottom:0 !important;
+  //  background-color: #BCDAFD;
+  background-image: linear-gradient(to left, #051937, #0e426a, #09729f, #00a5d1, #00dcff);
+ }
+ .contentPage {
+   margin:50px 100px;
+   width: 1200px;
+ }
+
+ .tDescription {
+   height: 100px;
+   color: gray;
+   font-size: 18px;
+ }
+ .tContainerRest {
+   padding: 0;
+ }
+
+ .App {
+   padding: 0 !important;
+   margin: 0 !important;
+ }
+
+ 
+
+
+.profilepage {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-image: linear-gradient(to left, #051937, #0e426a, #09729f, #00a5d1, #00dcff);
+}
+
+ .profile {
+   font-weight: bolder;
+   margin: 50px auto;
+   width: 500px;
+   padding: 30px;
+   border-radius: 20px;
+   background-color: white;
+ }
+ /* .align {
+  align-content: center;
+ } */
+
+ /* .testing{
+  width: 50vw
+ } */
+
+ 

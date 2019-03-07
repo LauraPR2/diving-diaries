@@ -31,9 +31,8 @@ export default class MainNavbar extends Component {
   }
   render() {
     return (
-      <Navbar color="primary" dark expand="md" className="MainNavbar">
-        <NavbarBrand to="/" tag={Link}>
-
+      <Navbar color="#cdfdfa55" dark expand="md" className="MainNavbar">
+        <NavbarBrand src='/images/logonou.png' to="/" tag={Link}>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>

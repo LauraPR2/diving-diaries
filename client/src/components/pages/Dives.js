@@ -5,7 +5,6 @@ import { Container, Row, Col, Button, Input } from 'reactstrap';
 import Rating from './Rating';
 
 
-var FontAwesome = require('react-fontawesome');
 
 
 export default class Dives extends Component {
@@ -24,6 +23,7 @@ export default class Dives extends Component {
         this.setState({
           favourite: true
         })
+        this.componentDidMount()
       })
       .catch(error => {
         console.log(error)
@@ -109,69 +109,109 @@ export default class Dives extends Component {
 
   render() {
     return (
-      <div className="Dives">
-        <h2>List of dives</h2>
-        <span>Filter by</span><Rating onUpdated={this.filterbyRating}>{this.state.star}</Rating>
+      <div className="dives">
+        <div className="contentPage">
+          <div className="topFilter mb-5">
+            <h2 className="dark-grey">Your Dives</h2>
+            <div className="row">
+              <div className="col-1 d-flex aligning tcons">
+                <span><p>Filter by:</p></span>
+              </div>
+              <div className="col-1 aligning d-flex">
+                <span>Rating: </span>
+                <Rating onUpdated={this.filterbyRating}>{this.state.star}</Rating>
+              </div>
+              <div className="col-2 ml-5 d-flex aligning">
+                <span>Depth: </span>
+                <Input type='number' value={this.state.depth} onChange={this.filterbyDepth} />
+              </div>
+              <div className="col-2 d-flex aligning">
+                <span>Sport: </span>
+                <Input type='select' onChange={this.filterbyDiveType}>
+                  <option>All</option>
+                  <option>Apnea</option>
+                  <option>Scuba</option>
+                </Input>
+              </div>
+              <div className="col-1">
+                <button className="ui button" onClick={this.clearFilter}>Clear</button>
+              </div>
+            </div>
 
-        <Input type='number' value={this.state.depth} onChange={this.filterbyDepth} />
-        <Input type='select' onChange={this.filterbyDiveType}>
-          <option>All</option>
-          <option>Apnea</option>
-          <option>Scuba</option>
-        </Input>
-        <Button onClick={this.clearFilter}>clear</Button>
+          </div>
+          <div className=""> {this.state.dives.map(c => {
+            return (
 
-        <div> {this.state.dives.map(c => {
-          return (
-            <Container className="diveCard shadow" key={c._id}>
-              <Row>
-                {(c.favourite)
-                  ? <Col>
-                    <h3>{c.title}</h3><span><FontAwesome
-                      onClick={() => this.favouriteDive(c._id)}
-                      className="fa fa-heart" /></span>
-                  </Col>
-                  : <Col>
-                    <h3>{c.title}</h3> <span><FontAwesome
-                      onClick={() => this.favouriteDive(c._id)}
-                      className="far fa-heart" /></span>
-                  </Col>
-                }
+              /* Starting here */
 
-                <Col>
-                  <Rating className="non-dec">{c.rating}</Rating>
-                </Col>
-                <Col>
 
-                  <a onClick={() => this.deleteDive(c
-                    ._id)}><FontAwesome className="fas fa-times" />
-                  </a>
+              <div className="tContainer diveCard shadow" key={c._id}>
+                <div className="row">
+                  <div className="col d-flex">
+                    <h3 className="dark-grey"><strong>{c.title}</strong>   </h3>
+                    <h3 className="midgreen"><Rating>{c.rating}</Rating></h3>
+                  </div>
+                  <div className="ticons col d-flex">
+                    {(!c.favourite)
+                      ? <div>
+                        <h3>
+                          <i onClick={() => this.favouriteDive(c._id)} className="heart red outline icon" />
+                        </h3>
+                      </div>
+                      : <div>
+                        <h3>
+                          <i onClick={() => this.favouriteDive(c._id)} className="heart red icon" />
+                        </h3>
+                      </div>}
 
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <li>Type of dive: {c.diveType}</li>
-                  <li>Visibility: {c.visibility}m</li>
-                  <li>Depth: {c.depth}m</li>
-                  <p>{c.description}</p>
+                    <h3>
+                      <a onClick={() => this.deleteDive(c
+                        ._id)}>
+                        <i className="trash alternate outline icon"></i>
+                      </a>
+                    </h3>
 
-                </Col>
-                <Col>
-                  <Map
-                    className="sMap"
-                    location={c.location}
-                    id={c._id}
-                    allowMovement={false}
-                    accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
-                </Col>
-              </Row>
-              <Button href={`/dive/${c._id}`}>View</Button>
-            </Container>
+                  </div>
+                </div>
 
-          )
-        }
-        )}</div>
+                <div className="row p-2">
+                  <div className="tContainerRest col-9">
+                    <div className="tInfo">
+                      <span>{c.date}</span><br />
+                      <span><strong>Type of dive: </strong>{c.diveType}</span><br />
+                      <span><strong>Visibility: </strong>{c.visibility} m</span><br />
+                      <span><strong>Depth: </strong>{c.depth} m</span><br />
+                      <span><strong>Desription: </strong></span>
+                    </div>
+                    <div className="tDescription">
+                      <p>{c.description}</p>
+                    </div>
+                    <div className="center tButton">
+                      <button href={`/dive/${c._id}`} className="ui button">
+                        View
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="tMap d-flex col-3">
+                    <Map
+                      location={c.location}
+                      id={c._id}
+                      allowMovement={false}
+                      accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
+                  </div>
+                </div>
+
+              </div>
+
+              /* Ending here */
+
+
+
+            )
+          }
+          )}</div>
+        </div>
       </div >
     )
   }
