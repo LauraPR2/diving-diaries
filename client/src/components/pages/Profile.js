@@ -26,6 +26,12 @@ export default class Profile extends Component {
         console.log(error)
       })
   }
+  cancel = () => {
+    this.setState({
+      editing: false
+    })
+    this.componentDidMount()
+  }
 
   startEditing = () => {
     this.setState({
@@ -63,7 +69,7 @@ export default class Profile extends Component {
                       <i className="save outline icon"></i></div>
                   </div>
 
-                  <div onClick={this.save} className="ui animated button" tabIndex="0">
+                  <div onClick={this.cancel} className="ui animated button" tabIndex="0">
                     <div className="visible content">Cancel</div>
                     <div className="hidden content">
                       <i className="close icon"></i></div>
@@ -73,7 +79,7 @@ export default class Profile extends Component {
                 :
                 <div>
                   <div onClick={this.startEditing} className="ui animated button" tabIndex="0">
-                    <div className="visible content">Next</div>
+                    <div className="visible content">Edit</div>
                     <div className="hidden content">
                       <i className="edit outline icon"></i></div>
                   </div>

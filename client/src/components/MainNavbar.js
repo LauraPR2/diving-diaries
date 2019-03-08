@@ -3,7 +3,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -31,9 +30,11 @@ export default class MainNavbar extends Component {
   }
   render() {
     return (
-      <Navbar color="#cdfdfa55" dark expand="md" className="MainNavbar">
-        <NavbarBrand src='/images/logonou.png' to="/" tag={Link}>
-        </NavbarBrand>
+      <Navbar dark expand="md" className="MainNavbar">
+        <Link to="/">
+          <img src='/images/logonou.png' style={{ height: "60px" }} to="/" tag={Link} />
+        </Link>
+
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
@@ -60,7 +61,7 @@ export default class MainNavbar extends Component {
             </NavItem>}
           </Nav>
         </Collapse>
-      </Navbar>
+      </Navbar >
     )
   }
 }

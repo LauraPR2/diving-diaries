@@ -3,7 +3,7 @@ import api from '../../api';
 import Map from './Map'
 import { Container, Row, Col, Button, Input } from 'reactstrap';
 import Rating from './Rating';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -67,6 +67,22 @@ export default class Dives extends Component {
       .catch(err => console.log(err))
   }
 
+  formatDate = (date) => {
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return (day + ' ' + monthNames[monthIndex] + ' ' + year)
+  }
+
+
   filterbyDepth = (event) => {
     const num = event.target.value
     this.setState({
@@ -108,6 +124,11 @@ export default class Dives extends Component {
 
 
   render() {
+    const numberPerPage = 5
+    const currentPage = parseInt(this.props.match.params.page)
+    const totalPages = Math.ceil(this.state.dives.length / numberPerPage)
+    const dives = this.state.dives.slice(currentPage * numberPerPage, (currentPage * numberPerPage) + numberPerPage)
+
     return (
       <div className="dives">
         <div className="contentPage">
@@ -139,7 +160,7 @@ export default class Dives extends Component {
             </div>
 
           </div>
-          <div className=""> {this.state.dives.map(c => {
+          <div className=""> {dives.map(c => {
             return (
 
               /* Starting here */
@@ -177,8 +198,8 @@ export default class Dives extends Component {
                 <div className="row p-2">
                   <div className="tContainerRest col-9">
                     <div className="tInfo">
-                      <span>{c.date}</span><br />
-                      <span><strong>Type of dive: </strong>{c.diveType}</span><br />
+                      <span>{this.formatDate(new Date(c.date))}</span><br />
+                      <span><strong>How did I dive? </strong>{c.diveType}</span><br />
                       <span><strong>Visibility: </strong>{c.visibility} m</span><br />
                       <span><strong>Depth: </strong>{c.depth} m</span><br />
                       <span><strong>Desription: </strong></span>
@@ -187,8 +208,9 @@ export default class Dives extends Component {
                       <p>{c.description}</p>
                     </div>
                     <div className="center tButton">
-                      <button href={`/dive/${c._id}`} className="ui button">
-                        View
+
+                      <button className="ui button">
+                        <a href={`/dive/${c._id}`}>View</a>
                       </button>
                     </div>
                   </div>
@@ -211,6 +233,14 @@ export default class Dives extends Component {
             )
           }
           )}</div>
+          {currentPage - 1 >= 0
+            ? <Link className='btn' to={"/dives/" + (currentPage - 1)}>Previous</Link>
+            : <div></div>
+          }
+          {currentPage + 1 < totalPages
+            ? <Link className='btn' to={"/dives/" + (currentPage + 1)}>Next</Link>
+            : <div></div>
+          }
         </div>
       </div >
     )

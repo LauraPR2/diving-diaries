@@ -4,6 +4,7 @@ import Map from './Map';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { type } from 'os';
 import Rating from './Rating'
+import { Link } from 'react-router-dom';
 
 
 export default class AddDive extends Component {
@@ -18,7 +19,8 @@ export default class AddDive extends Component {
       latLog: [],
       message: null,
       diveType: "",
-      chosenFiles: []
+      chosenFiles: [],
+      finished: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -63,7 +65,8 @@ export default class AddDive extends Component {
         })
         setTimeout(() => {
           this.setState({
-            message: null
+            message: null,
+            finished: true,
           })
         }, 2000)
       })
@@ -78,6 +81,7 @@ export default class AddDive extends Component {
   }
 
   handleFileUpload = e => {
+    if (!e.target.files || e.target.files.length == 0) return
     this.state.chosenFiles.push(e.target.files[0])
     this.setState({
       chosenFiles: this.state.chosenFiles
@@ -144,28 +148,21 @@ export default class AddDive extends Component {
           </FormGroup>
 
           <FormGroup>
-            <Label for="imageFile" sm={2}>File</Label>
-            <Input id="imageFile" type="file" name="file"
-              onChange={(e) => this.handleFileUpload(e)}
-            />
-            <FormText color="muted">
-              This is some placeholder block-level help text for the above input.
-              It's a bit lighter and easily wraps to a new line.
-                </FormText>
+            {this.state.chosenFiles.map((f, i) => {
+              return <div key={i}>{f.name}</div>
+            })}
+            <div className="fileUpload btn btn-primary">
+              <span>Upload</span>
+              <input type="file" class="upload" onChange={(e) => this.handleFileUpload(e)} />
+            </div>
           </FormGroup>
 
           <FormGroup>
-            <Label for="imageFile" sm={2}>File</Label>
-            <Input id="imageFile" type="file" name="file"
-              onChange={(e) => this.handleFileUpload(e)}
-            />
-            <FormText color="muted">
-              This is some placeholder block-level help text for the above input.
-              It's a bit lighter and easily wraps to a new line.
-                </FormText>
-          </FormGroup>
-          <FormGroup>
             <Button onClick={(e) => this.handleClick(e)}>Create dive</Button>
+            {this.state.finished
+              ? <Link to="/dives/0">Back to dives</Link>
+              : <div></div>
+            }
           </FormGroup>
         </Form>
         {this.state.message && <div className="info">
