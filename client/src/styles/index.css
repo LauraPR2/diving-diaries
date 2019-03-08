@@ -53,17 +53,27 @@ body {
 .midgreen {
   color: #23B0B1; }
 
+.gray {
+  color: gray; }
+
+.light-gray {
+  color: #CACBCD; }
+
 * {
   font-family: 'Quicksand', sans-serif; }
 
 h2 {
-  font-weight: bolder; }
+  color: #e2eff2 !important;
+  font-size: 40px !important; }
 
 h3 {
   color: gray; }
 
 .dark-grey {
   color: #545353; }
+
+.filter {
+  font-size: 15px; }
 
 .shadow {
   -moz-box-shadow: inset 0 0 10px #000000;
@@ -142,7 +152,7 @@ form {
   background-image: linear-gradient(to left, #051937, #0e426a, #09729f, #00a5d1, #00dcff); }
 
 .contentPage {
-  margin: 50px 100px;
+  margin: 0 100px;
   width: 1200px; }
 
 .tDescription {
@@ -169,12 +179,6 @@ form {
   border-radius: 20px;
   background-color: white; }
 
-/* .align {
-  align-content: center;
- } */
-/* .testing{
-  width: 50vw
- } */
 .fileUpload {
   position: relative;
   overflow: hidden;

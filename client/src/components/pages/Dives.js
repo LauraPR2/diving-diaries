@@ -136,18 +136,18 @@ export default class Dives extends Component {
             <h2 className="dark-grey">Your Dives</h2>
             <div className="row">
               <div className="col-1 d-flex aligning tcons">
-                <span><p>Filter by:</p></span>
+                <span className="filter"><p>Filter by:</p></span>
               </div>
               <div className="col-1 aligning d-flex">
-                <span>Rating: </span>
-                <Rating onUpdated={this.filterbyRating}>{this.state.star}</Rating>
+                <span className="filter">Rating: </span>
+                <Rating className="filter" onUpdated={this.filterbyRating}>{this.state.star}</Rating>
               </div>
               <div className="col-2 ml-5 d-flex aligning">
-                <span>Depth: </span>
+                <span className="filter">Depth: </span>
                 <Input type='number' value={this.state.depth} onChange={this.filterbyDepth} />
               </div>
               <div className="col-2 d-flex aligning">
-                <span>Sport: </span>
+                <span className="filter">Sport: </span>
                 <Input type='select' onChange={this.filterbyDiveType}>
                   <option>All</option>
                   <option>Apnea</option>
@@ -233,16 +233,18 @@ export default class Dives extends Component {
             )
           }
           )}</div>
-          {currentPage - 1 >= 0
-            ? <Link className='btn' to={"/dives/" + (currentPage - 1)}>Previous</Link>
-            : <div></div>
-          }
-          {currentPage + 1 < totalPages
-            ? <Link className='btn' to={"/dives/" + (currentPage + 1)}>Next</Link>
-            : <div></div>
-          }
+          <div className="row center">
+            {currentPage - 1 >= 0
+              ? <Link className='btn' to={"/dives/" + (currentPage - 1)}><h3><i class="arrow  light-gray alternate circle left icon"></i></h3></Link>
+              : <div></div>
+            }
+            {currentPage + 1 < totalPages
+              ? <Link className='btn' to={"/dives/" + (currentPage + 1)}><h3><i class="arrow  light-gray alternate circle right icon"></i></h3></Link>
+              : <div></div>
+            }
+          </div>
         </div>
-      </div >
+      </div>
     )
   }
   componentDidMount() {

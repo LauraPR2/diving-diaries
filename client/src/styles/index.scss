@@ -152,13 +152,21 @@ body {
 .midgreen {
   color: #23B0B1;
 }
+.gray {
+  color: gray;
+}
+.light-gray {
+  color: #CACBCD;
+}
+
 //Fonts
 
 * {
   font-family: 'Quicksand', sans-serif;
 }
 h2 {
-  font-weight: bolder;
+  color: #e2eff2 !important;
+  font-size: 40px !important;
 }
 h3 {
   color: gray;
@@ -166,6 +174,9 @@ h3 {
 
 .dark-grey {
   color: #545353;
+}
+.filter {
+  font-size: 15px;
 }
 
 //displays
@@ -281,7 +292,7 @@ h3 {
   background-image: linear-gradient(to left, #051937, #0e426a, #09729f, #00a5d1, #00dcff);
  }
  .contentPage {
-   margin:50px 100px;
+   margin: 0 100px;
    width: 1200px;
  }
 
@@ -315,13 +326,7 @@ h3 {
    border-radius: 20px;
    background-color: white;
  }
- /* .align {
-  align-content: center;
- } */
 
- /* .testing{
-  width: 50vw
- } */
 
  .fileUpload {
   position: relative;

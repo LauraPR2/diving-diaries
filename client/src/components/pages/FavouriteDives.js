@@ -13,6 +13,20 @@ export default class FavouriteDives extends Component {
     }
 
   }
+  formatDate = (date) => {
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return (day + ' ' + monthNames[monthIndex] + ' ' + year)
+  }
 
 
 
@@ -34,7 +48,7 @@ export default class FavouriteDives extends Component {
                 <div className="row p-2">
                   <div className="tContainerRest col-9">
                     <div className="tInfo">
-                      <span>{c.date}</span><br />
+                      <span>{this.formatDate(new Date(c.date))}</span><br />
                       <span><strong>Type of dive: </strong>{c.diveType}</span><br />
                       <span><strong>Visibility: </strong>{c.visibility} m</span><br />
                       <span><strong>Depth: </strong>{c.depth} m</span><br />

@@ -56,7 +56,7 @@ export default class Profile extends Component {
           <div className="row justify-content-center">
             <div className="col-5">
               <div className="row justify-content-center">
-                <h2>My Profile</h2>
+                <h2>Profile</h2>
               </div>
             </div>
             <div className="col-7 d-flex ticons">
@@ -88,7 +88,7 @@ export default class Profile extends Component {
             </div>
           </div>
           <div className="row pt-3 pb-2 justify-content-center">
-            <h3>User information</h3>
+            <h3><i className="user outline icon"></i> Account</h3>
           </div>
           <div className="row justify-content-center">
             <div className="ticons d-flex col-5">
@@ -129,7 +129,7 @@ export default class Profile extends Component {
               }</div>
           </div>
           <div className="row pt-3 pb-2 justify-content-center">
-            <h3>Diving information</h3>
+            <h3><i className="life ring outline icon"></i>Diving</h3>
           </div>
 
           <div className="row justify-content-center">
@@ -167,12 +167,12 @@ export default class Profile extends Component {
             <div className="col-7">
               {(this.state.editing)
                 ? <Input type="number" id="weightBelt" value={this.state.profile.weightBelt} onChange={this.changeProfile} name="weightBelt" />
-                : <span>{this.state.profile.weightBelt}</span>
+                : <span>{this.state.profile.weightBelt}kg</span>
               }
             </div>
           </div>
-          <div className="row pt-3 pb-2 justify-content-center">
-            <h4>Personal Records</h4>
+          <div className="row gray pt-3 pb-2 justify-content-center">
+            <h4><i className="trophy icon"></i>Records</h4>
           </div>
           <div className="row justify-content-center">
             <div className="d-flex ticons col-5">
@@ -181,7 +181,7 @@ export default class Profile extends Component {
             <div className="col-7">
               {(this.state.editing)
                 ? <Input type="number" id="recordDepth" onChange={this.changeProfile} value={this.state.profile.recordDepth} name="recordDepth" />
-                : <span>{this.state.profile.recordDepth}</span>
+                : <span>{this.state.profile.recordDepth}m</span>
               }
             </div>
           </div>
@@ -197,7 +197,7 @@ export default class Profile extends Component {
                     id="recordTime"
                     onChange={this.changeProfile}
                     value={this.state.profile.recordTime} name="recordTime" />
-                    <span>{this.state.profile.recordTime}</span>
+                    <span>{this.state.profile.recordTime}min</span>
                   </div>
                   : <div></div>
                 }
