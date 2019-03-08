@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../api';
 import Map from './Map'
-import { Container, Row, Col, Button, Input } from 'reactstrap';
 import Rating from './Rating';
-
-
-var FontAwesome = require('react-fontawesome');
 
 
 export default class FavouriteDives extends Component {
