@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import api from '../../api';
 import Map from './Map'
 import Rating from './Rating';
+import { Link } from 'react-router-dom';
 
 
 export default class FavouriteDives extends Component {

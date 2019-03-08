@@ -96,11 +96,11 @@ export default class AddDive extends Component {
 
   render() {
     return (
-      <div className="container">
-        <Form className='shadow'>
+      <div className="profilepage">
+        <Form className='diveCard shadow'>
           <h2>Add dive</h2>
-          <Row form>
-            <Col md={4}>
+          <div className="row">
+            <div className="col-9">
               <FormGroup>
                 <Label for="diveTypeSelect">Apnea or Scuba? </Label>
                 <Input type="select" id="diveTypeSelect" value={this.state.diveType} name="diveType" onChange={this.handleInputChange}>
@@ -128,16 +128,14 @@ export default class AddDive extends Component {
                 </Rating>
               </FormGroup>
 
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Map
-                  onClick={this.foundLocation}
-                  allowMovement={true}
-                  accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
-              </FormGroup>
-            </Col>
-          </Row>
+            </div>
+            <div className="tMap flex col-3">
+              <Map
+                onClick={this.foundLocation}
+                allowMovement={true}
+                accessToken="pk.eyJ1IjoibGF1cmFwcjIiLCJhIjoiY2pydDhkNDVrMHFheTN5bXFsZnY0azNnMiJ9.07FzAj0enFs4Z4GP0chyvA" />
+            </div>
+          </div>
           <FormGroup>
             <Label for="title">Title: </Label>
             <Input id="title" type="text" value={this.state.title} name="title" onChange={this.handleInputChange} />

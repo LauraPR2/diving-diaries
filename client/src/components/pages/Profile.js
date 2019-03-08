@@ -40,6 +40,7 @@ export default class Profile extends Component {
   }
 
 
+
   changeProfile = (event) => {
     var updatedProfile = this.state.profile
     updatedProfile[event.target.name] = event.target.value
@@ -193,13 +194,12 @@ export default class Profile extends Component {
               </div>
               <div className="col-7">
                 {(this.state.editing)
-                  ? <div><Input type="text"
+                  ? <div><Input type="number"
                     id="recordTime"
                     onChange={this.changeProfile}
                     value={this.state.profile.recordTime} name="recordTime" />
-                    <span>{this.state.profile.recordTime}min</span>
                   </div>
-                  : <div></div>
+                  : <div><span>{this.state.profile.recordTime}m</span></div>
                 }
               </div>
             </div>

@@ -17,7 +17,7 @@ class Map extends Component {
       container: `map${this.props.id}`, // html element id in render
       style: `mapbox://styles/mapbox/streets-v9`,
       center: location, // note: lon comes before lat
-      zoom: 10
+      zoom: 3
     })
 
     var coordinates = document.getElementById('coordinates');

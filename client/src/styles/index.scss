@@ -145,6 +145,10 @@ body {
 .red {
   color: #EF3F52;
 }
+
+.coral {
+  color: #ff5947;
+}
 .lightgreen {
   color: #51E2EE;
   
@@ -153,16 +157,24 @@ body {
   color: #23B0B1;
 }
 .gray {
-  color: gray;
+  color: gray !important;
 }
 .light-gray {
   color: #CACBCD;
+}
+
+.dark-grey {
+  color: #545456;
 }
 
 //Fonts
 
 * {
   font-family: 'Quicksand', sans-serif;
+}
+
+h1 {
+  font-size: 60px !important;
 }
 h2 {
   color: #e2eff2 !important;
@@ -192,12 +204,30 @@ h3 {
   justify-content:center; 
  }
 
+ .center1{
+  justify-content:center; 
+ }
+
+ .center2 {
+   margin-top: 200px;
+ }
+
+ .column {
+   flex-direction: column;
+   align-items: center;
+ }
+
  .flex {
    display: flex;
  }
 
  .p20{
    padding: 50px;
+ }
+
+ .italic {
+   font-style: italic;
+   font-weight: light;
  }
 
 //  .row {
@@ -220,15 +250,14 @@ h3 {
 
  .login {
    margin: 100px auto;
-   max-width: 350px;
    justify-content:center; 
    align-content: center;
  }
 
  .container-login {
-   display: flex;
    align-content: center;
-   justify-content:center; 
+   justify-content:center;
+   margin: 0; 
 
  }
 
@@ -305,16 +334,29 @@ h3 {
    padding: 0;
  }
 
+
  .App {
    padding: 0 !important;
    margin: 0 !important;
  }
 
- 
+ .picturesdiv {
+   display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+ }
+ .picture {
+   padding: 0px;
+   max-width: 300px;
+   margin: 5px;
+ }
+
 
 
 .profilepage {
   padding: 50px;
+  height: 900px;
   background-image: linear-gradient(to left, #051937, #0e426a, #09729f, #00a5d1, #00dcff);
 }
 
@@ -343,6 +385,11 @@ h3 {
   cursor: pointer;
   opacity: 0;
   filter: alpha(opacity=0);
+}
+
+.homeB {
+  background-image: url('/images/coral2.jpg');
+  height: 900px;
 }
 
  

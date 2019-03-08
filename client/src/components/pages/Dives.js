@@ -133,7 +133,7 @@ export default class Dives extends Component {
       <div className="dives">
         <div className="contentPage">
           <div className="topFilter mb-5">
-            <h2 className="dark-grey">Your Dives</h2>
+            <h2 className="dark-grey">My Dives</h2>
             <div className="row">
               <div className="col-1 d-flex aligning tcons">
                 <span className="filter"><p>Filter by:</p></span>

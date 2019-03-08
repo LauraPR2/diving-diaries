@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../api';
 import {
-  Container, Input, Button, Col
+  Container, Input, Button, Col, Label
 } from 'reactstrap';
 
 
@@ -35,20 +35,23 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container-login">
-        <div className="login">
-          <div className="p20"><h2>Log in to your account</h2></div>
-          <form className="shadow">
-            <label>Username: </label>
-            <input type="text" value={this.state.username} onChange={(e) => this.handleInputChange("username", e)} /> <br />
-            <label>Password:</label>
-            <input type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} /> <br />
+      <div className="profilepage container-login">
+        <div>
+          <div className="center pb-3"><h2>Log in to Your Account</h2></div>
+          <div className="">
+            <form className="profile shadow">
+              <Label>Username: </Label>
+              <Input type="text" value={this.state.username} onChange={(e) => this.handleInputChange("username", e)} /> <br />
+              <Label>Password:</Label>
+              <Input type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} /> <br />
 
-            <div className="center"><Button onClick={(e) => this.handleClick(e)}>Login</Button></div>
-          </form>
-          {this.state.message && <div className="info info-danger">
-            {this.state.message}
-          </div>}</div>
+              <div className="center">
+                <Button onClick={(e) => this.handleClick(e)}>Login</Button></div>
+            </form>
+            {this.state.message && <div className="info info-danger">
+              {this.state.message}
+            </div>}</div>
+        </div>
       </div>
     );
   }

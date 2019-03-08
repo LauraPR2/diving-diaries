@@ -11,11 +11,12 @@ class Dive extends Component {
   // }
   render() {
     return (
-      <Container className="Dive">
-        <h2>Dive</h2>
-        <p>Journal about your amazing diving experiences!</p>
-        <button className="btn btn-primary">Hello</button>
-      </Container>
+      <div className="homeB flex column Dive">
+        <div className="center2">
+          <h1 className="center coral"><strong>Dive. Explore. Keep all you memories in one place.</strong></h1>
+          <h2 className="center italic"> -We dive not to escape life, but for life not to escape us- </h2>
+        </div>
+      </div>
     );
   }
 }
